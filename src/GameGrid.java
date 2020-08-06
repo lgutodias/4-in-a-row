@@ -59,11 +59,12 @@ public class GameGrid {
     }
 
     // Set the player move.
-    public boolean setPlayerMove(int row, int column) {
+    public boolean setPlayerMove(int column) {
 
-
-        // check if the row and column is empty on the board
-        if (isValidMove(row, column)) {
+    	// check if the row and column is empty on the board
+    	int row = stackUp(column);
+    	// It's stackable
+        if (row > -1) {
             grid[row][column] = "P";
             return true;
         }
@@ -72,15 +73,27 @@ public class GameGrid {
     }
 
     // Set the computer move.
-    public boolean setComputerMove(int row, int column) {
-
-        // check if the row and column is empty on the board
-        if (isValidMove(row, column)) {
+    public boolean setComputerMove(int column) {
+    	
+    	// check if the row and column is empty on the board
+    	int row = stackUp(column);
+    	// It's stackable
+        if (row > -1) {
             grid[row][column] = "C";
             return true;
         }
 
         return false;
+    }
+    
+    // Returns a valid row. Otherwise -1
+    private int stackUp(int column) {
+    	
+    	for (int row = gridSize-1; row >= 0; row--) {
+    		if (isValidMove(row, column))
+    			return row;
+		}
+    	return -1;
     }
 
 
@@ -111,7 +124,7 @@ public class GameGrid {
             }
 
             // Print the board column
-            System.out.print("| " + (row + 1));
+            System.out.print("| ");
         }
         System.out.println("");
         System.out.println(repeatString("-", gridSize * 4));

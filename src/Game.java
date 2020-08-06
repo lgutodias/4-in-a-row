@@ -55,6 +55,7 @@ public class Game {
         keepPlaying = false;
       }
     }
+    System.out.println("Game has ended");
   }
 
   private static int getGameType() {
@@ -81,24 +82,24 @@ public class Game {
 
       if (isPlayer) {
 
-        int row = getMove(boardSize, true);
-        int col = getMove(boardSize, false);
+        int col = getMove(boardSize);
 
-        if ((row > boardSize || row < 0) || (col > boardSize || col < 0)) {
+        if (col > boardSize || col < 0) {
           System.out.println("Invalid move. Please enter a value between 1 and " + boardSize);
           continue;
         }
 
-        boolean moveResult = gameGrid.setPlayerMove(row - 1, col - 1);
+        boolean moveResult = gameGrid.setPlayerMove(col - 1);
         if (!moveResult) {
           continue;
         }
       } else {
 
-        int row = computer.nextInt(boardSize);
+
         int column = computer.nextInt(boardSize);
 
-        boolean moveResult = gameGrid.setComputerMove(row, column);
+        boolean moveResult = gameGrid.setComputerMove(column);
+    	 
         if (!moveResult) {
           continue;
         }
@@ -114,19 +115,15 @@ public class Game {
     return gameGrid;
   }
 
-  private static int getMove(int boardSize, boolean isRow) {
+  private static int getMove(int boardSize) {
 
     try {
-      if(isRow) {
-        System.out.println("Please select the ROW between 1 and " + boardSize);
-      } else {
-        System.out.println("Please select the COLUMN between 1 and " + boardSize);
-      }
-      String rowAsString = scanner.nextLine();
+    	
+    	System.out.println("Please select the COLUMN between 1 and " + boardSize);
 
-      return Integer.parseInt(rowAsString);
+    	return scanner.nextInt();
     } catch (Exception e) {
-      return getMove(boardSize, isRow);
+      return getMove(boardSize);
     }
   }
 

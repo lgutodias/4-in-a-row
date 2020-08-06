@@ -21,6 +21,7 @@ public final class WinnerChecker {
             for (int col = 0; col < matrix[row].length - 3; col++)
             {
                 String element = matrix[row][col];
+                element = (element == "") ? null : element;
                 if (element == matrix[row][col + 1] &&
                         element == matrix[row][col + 2] &&
                         element == matrix[row][col + 3])
@@ -37,11 +38,12 @@ public final class WinnerChecker {
 
     private static String checkColumns(String[][] matrix)
     {
-        for (int row = 0; row < matrix.length - 3; row++)
+    	for (int row = 0; row < matrix.length - 3; row++)
         {
             for (int col = 0; col < matrix[row].length; col++)
             {
                 String element = matrix[row][col];
+                element = (element == "") ? null : element;
                 if (element == matrix[row + 1][col] &&
                         element == matrix[row + 2][col] &&
                         element == matrix[row + 3][col])
@@ -62,6 +64,7 @@ public final class WinnerChecker {
             for (int col = 0; col < matrix[row].length - 3; col++)
             {
                 String element = matrix[row][col];
+                element = (element == "") ? null : element;
                 if (element == matrix[row + 1][col + 1] &&
                         element == matrix[row + 2][col + 2] &&
                         element == matrix[row + 3][col + 3])
@@ -80,6 +83,7 @@ public final class WinnerChecker {
             for (int col = 3; col < matrix[row].length; col++)
             {
                 String element = matrix[row][col];
+                element = (element == "") ? null : element;
                 if ( element == matrix[row + 1][col - 1] &&
                         element == matrix[row + 2][col - 2] &&
                         element == matrix[row + 3][col - 3])
