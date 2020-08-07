@@ -103,6 +103,8 @@ public class Game {
         if (!moveResult) {
           continue;
         }
+        // Show which column was chosen
+        System.out.println("\nComputer move: column " + (column+1) + "\n");
       }
 
       gameGrid.printBoard();
@@ -203,4 +205,17 @@ public class Game {
       isValidEmail = pattern.matcher(email).matches();
     }
   }
+  
+  // Wait for a certain time in milliseconds
+  public static void wait(int ms) {
+	  
+	try {
+		Thread.sleep(ms);
+	} catch (InterruptedException e) {
+		Thread.currentThread().interrupt();
+		e.printStackTrace();
+	}
+  }
+  
+  
 }
